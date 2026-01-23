@@ -1,0 +1,141 @@
+
+O'zbekiston bo'ylab OLX Xizmati admini, [23.01.2026 14:44]
+DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Estate</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0e1118;color:#fff}
+header{
+  position:sticky;top:0;z-index:10;
+  padding:18px 36px;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(14,17,24,.7);backdrop-filter:blur(10px)
+}
+header b{color:#7cf0c5}
+header a{color:#fff;text-decoration:none;margin-left:18px}
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:40px;position:relative;
+  background:linear-gradient(135deg,#2a7cff,#0e1118 65%);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:url('https://picsum.photos/seed/estatebg/1600/900') center/cover;
+  opacity:.18
+}
+.hero .box{position:relative;z-index:2}
+.hero h1{font-size:64px}
+.hero p{max-width:620px;margin:18px auto;color:#e6e6e6}
+.btn{
+  display:inline-block;margin-top:16px;padding:16px 30px;border-radius:40px;
+  background:#7cf0c5;color:#000;text-decoration:none;font-weight:bold
+}
+.section{padding:90px 20px;max-width:1200px;margin:auto}
+.section h2{text-align:center;font-size:40px;margin-bottom:50px}
+.grid{display:flex;flex-wrap:wrap;gap:26px;justify-content:center}
+.card{
+  width:300px;background:#151a25;border-radius:22px;padding:16px;
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+  transform:translateY(80px);opacity:0;transition:.8s
+}
+.card.show{transform:translateY(0);opacity:1}
+.card img{
+  width:100%;height:180px;border-radius:16px;object-fit:cover;margin-bottom:12px
+}
+.price{color:#7cf0c5;font-weight:bold}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;text-align:center}
+.stats b{font-size:36px;color:#7cf0c5}
+footer{padding:40px;text-align:center;color:#aaa;background:#080b12}
+</style>
+</head>
+<body>
+
+<header>
+  <div><b>Prime</b>Estate</div>
+  <div>
+    <a href="#list">Uylar</a>
+    <a href="#why">Nega biz</a>
+    <a href="#contact">Aloqa</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="box">
+    <h1>Orzuingizdagi uyni toping</h1>
+    <p>Shahar markazidan tortib, tinch hududlargacha — eng yaxshi takliflar bizda.</p>
+    <a class="btn" href="#list">Ko‘rishni boshlash</a>
+  </div>
+</div>
+
+<div class="section" id="list">
+  <h2>Takliflar</h2>
+  <div class="grid" id="homes"></div>
+</div>
+
+<div class="section" id="why">
+  <h2>Nega PrimeEstate?</h2>
+  <div class="grid">
+    <div class="card">Tekshirilgan obyektlar</div>
+    <div class="card">Eng yaxshi narxlar</div>
+    <div class="card">24/7 maslahat</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Natijalarimiz</h2>
+  <div class="stats">
+    <div><b>1,200+</b><br>Sotilgan uy</div>
+    <div><b>98%</b><br>Mamnun mijoz</div>
+    <div><b>15+</b><br>Yillik tajriba</div>
+  </div>
+</div>
+
+<div class="section" id="contact">
+  <h2>Bog‘lanish</h2>
+  <div class="grid">
+    <div class="card">Telefon: +998 xx xxx xx xx</div>
+    <div class="card">Email: info@prime.uz</div>
+    <div class="card">Manzil: Toshkent</div>
+  </div>
+</div>
+
+<footer>© 2026 PrimeEstate</footer>
+
+<script>
+var homes=[
+ {n:"Luxury Villa",p:"$450,000",i:"https://picsum.photos/seed/home1/700/500"},
+ {n:"City Apartment",p:"$120,000",i:"https://picsum.photos/seed/home2/700/500"},
+ {n:"Family House",p:"$210,000",i:"https://picsum.photos/seed/home3/700/500"},
+ {n:"Modern Loft",p:"$180,000",i:"https://picsum.photos/seed/home4/700/500"},
+ {n:"Country Home",p:"$95,000",i:"https://picsum.photos/seed/home5/700/500"},
+ {n:"Penthouse",p:"$520,000",i:"https://picsum.photos/seed/home6/700/500"}
+];
+
+var box=document.getElementById("homes");
+for(var i=0;i<homes.length;i++){
+  var c=document.createElement("div");
+  c.className="card";
+  c.innerHTML=
+   '<img src="'+homes[i].i+'" onerror="this.src=\'https://picsum.photos/700/500\'">'+
+   '<h3>'+homes[i].n+'</h3>'+
+   '<div class="price">'+homes[i].p+'</div>';
+  box.appendChild(c);
+}
+function reveal(){
+  var a=document.getElementsByClassName("card");
+  for(var i=0;i<a.length;i++){
+    var r=a[i].getBoundingClientRect();
+    if(r.top<window.innerHeight-60){
+      a[i].className="card show";
+    }
+  }
+}
+window.onscroll=reveal;
+reveal();
+</script>
+
+</body>
+</html>
