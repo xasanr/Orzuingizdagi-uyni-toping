@@ -1,0 +1,1 @@
+# Orzuingizdagi-uyni-toping
