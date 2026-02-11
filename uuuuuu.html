@@ -1,141 +1,194 @@
 
-O'zbekiston bo'ylab OLX Xizmati admini, [23.01.2026 14:44]
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prime Estate</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0e1118;color:#fff}
-header{
-  position:sticky;top:0;z-index:10;
-  padding:18px 36px;display:flex;justify-content:space-between;align-items:center;
-  background:rgba(14,17,24,.7);backdrop-filter:blur(10px)
-}
-header b{color:#7cf0c5}
-header a{color:#fff;text-decoration:none;margin-left:18px}
-.hero{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:40px;position:relative;
-  background:linear-gradient(135deg,#2a7cff,#0e1118 65%);
-}
-.hero::after{
-  content:"";position:absolute;inset:0;
-  background:url('https://picsum.photos/seed/estatebg/1600/900') center/cover;
-  opacity:.18
-}
-.hero .box{position:relative;z-index:2}
-.hero h1{font-size:64px}
-.hero p{max-width:620px;margin:18px auto;color:#e6e6e6}
-.btn{
-  display:inline-block;margin-top:16px;padding:16px 30px;border-radius:40px;
-  background:#7cf0c5;color:#000;text-decoration:none;font-weight:bold
-}
-.section{padding:90px 20px;max-width:1200px;margin:auto}
-.section h2{text-align:center;font-size:40px;margin-bottom:50px}
-.grid{display:flex;flex-wrap:wrap;gap:26px;justify-content:center}
-.card{
-  width:300px;background:#151a25;border-radius:22px;padding:16px;
-  box-shadow:0 30px 60px rgba(0,0,0,.6);
-  transform:translateY(80px);opacity:0;transition:.8s
-}
-.card.show{transform:translateY(0);opacity:1}
-.card img{
-  width:100%;height:180px;border-radius:16px;object-fit:cover;margin-bottom:12px
-}
-.price{color:#7cf0c5;font-weight:bold}
-.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;text-align:center}
-.stats b{font-size:36px;color:#7cf0c5}
-footer{padding:40px;text-align:center;color:#aaa;background:#080b12}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxury Grand Hotel</title>
+  <style>
+    :root{
+      --gold:#d4af37;
+      --gold-soft:#b8962e;
+      --dark:#0a0a0a;
+      --dark-glass:rgba(0,0,0,.55);
+      --light:#f5f5f5;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+    body{
+      background:radial-gradient(circle at top, #2b1b0f, #000);
+      color:#eee;
+    }
+
+    /* HEADER / HERO */
+    header{
+      height:100vh;
+      background:
+        linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
+        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb');
+      background-size:cover;
+      background-position:center;
+      position:relative;
+    }
+
+    nav{
+      position:fixed;
+      top:0;left:0;width:100%;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:20px 50px;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      z-index:10;
+    }
+    nav h1{color:var(--gold);letter-spacing:3px}
+    nav ul{list-style:none;display:flex;gap:25px}
+    nav a{color:#fff;text-decoration:none;opacity:.9}
+
+    .hero{
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      animation:fadeUp 1.2s ease;
+    }
+    .hero h2{
+      font-size:56px;
+      letter-spacing:4px;
+      text-shadow:0 10px 40px rgba(0,0,0,.9);
+    }
+    .hero p{margin:20px 0;font-size:18px;opacity:.85}
+    .hero button{
+      padding:16px 42px;
+      border:none;border-radius:40px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+      color:#000;font-weight:600;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(212,175,55,.5);
+      transition:.3s;
+    }
+    .hero button:hover{transform:scale(1.07)}
+
+    /* SECTIONS */
+    section{max-width:1300px;margin:auto;padding:100px 50px}
+    .section-title{
+      text-align:center;font-size:38px;margin-bottom:60px;
+      color:var(--gold);
+      letter-spacing:3px;
+    }
+
+    /* ROOMS */
+    .rooms{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:40px;
+    }
+    .room{
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.9));
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:0 30px 60px rgba(0,0,0,.8);
+      transition:.4s;
+      backdrop-filter:blur(6px);
+    }
+    .room:hover{transform:translateY(-12px)}
+    .room img{width:100%;height:240px;object-fit:cover}
+    .room div{padding:26px}
+    .room h3{color:var(--gold);margin-bottom:10px}
+
+    /* BOOKING */
+    .booking{
+      background:linear-gradient(135deg,rgba(0,0,0,.85),rgba(30,15,5,.9));
+      border-radius:35px;
+      padding:70px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      box-shadow:0 40px 80px rgba(0,0,0,.9);
+    }
+    .booking input,.booking select{
+      width:100%;padding:15px;margin-bottom:15px;
+      border:none;border-radius:12px;
+      background:rgba(255,255,255,.1);
+      color:#fff;
+    }
+    .booking button{
+      padding:15px;border:none;border-radius:35px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+      color:#000;font-weight:600;
+      cursor:pointer;margin-right:10px
+    }
+
+    footer{
+      background:#000;color:#aaa;text-align:center;padding:50px;margin-top:100px
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(50px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @media(max-width:900px){
+      .hero h2{font-size:36px}
+      .booking{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+  </style>
 </head>
 <body>
-
 <header>
-  <div><b>Prime</b>Estate</div>
-  <div>
-    <a href="#list">Uylar</a>
-    <a href="#why">Nega biz</a>
-    <a href="#contact">Aloqa</a>
+  <nav>
+    <h1>GRAND HOTEL</h1>
+
+R
+<ul>
+      <li><a href="#rooms">Xonalar</a></li>
+      <li><a href="#booking">Bron</a></li>
+      <li><a href="#contact">Aloqa</a></li>
+    </ul>
+  </nav>
+  <div class="hero">
+    <h2>Luxury & Comfort</h2>
+    <p>5 yulduzli xizmat • Zamonaviy dizayn • Tinch dam</p>
+    <button onclick="scrollBooking()">Bron qilish</button>
   </div>
 </header>
 
-<div class="hero">
-  <div class="box">
-    <h1>Orzuingizdagi uyni toping</h1>
-    <p>Shahar markazidan tortib, tinch hududlargacha — eng yaxshi takliflar bizda.</p>
-    <a class="btn" href="#list">Ko‘rishni boshlash</a>
+<section id="rooms">
+  <h2 class="section-title">Xonalarimiz</h2>
+ sh.com/photo-1540518614846-7eded433c457"><div><h3>Premium</h3><p>900 000 so'm / kun</p></div></div>
   </div>
-</div>
+</section>
 
-<div class="section" id="list">
-  <h2>Takliflar</h2>
-  <div class="grid" id="homes"></div>
-</div>
-
-<div class="section" id="why">
-  <h2>Nega PrimeEstate?</h2>
-  <div class="grid">
-    <div class="card">Tekshirilgan obyektlar</div>
-    <div class="card">Eng yaxshi narxlar</div>
-    <div class="card">24/7 maslahat</div>
+<section id="booking">
+  <h2 class="section-title">Bron qilish</h2>
+  <div class="booking">
+    <div>
+      <h3>Biz bilan bog'laning</h3>
+      <p>Eng qulay narxlar va tezkor bron</p>
+    </div>
+    <form onsubmit="saveBooking(event)">
+      <input id="name" placeholder="Ismingiz" required>
+      <input id="phone" placeholder="Telefon" required> <div class="rooms">
+    <div class="room"><img src="https://images.unsplash.com/photo-1501117716987-c8e1ecb210d6"><div><h3>Standart</h3><p>300 000 so'm / kun</p></div></div>
+    <div class="room"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511"><div><h3>Lyuks</h3><p>600 000 so'm / kun</p></div></div>
+    <div class="room"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511"><div><h3>Lyuks</h3><p>600 000 so'm / kun</p></div></div>
+      <select id="room" required>
+        <option value="">Xona turi</option>
+        <option>Standart</option><option>Lyuks</option><option>Premium</option>
+      </select>
+      <button type="submit">Saqlash</button>
+      <button type="button" onclick="sendWA()">WhatsApp</button>
+      <div id="result"></div>
+    </form>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <h2>Natijalarimiz</h2>
-  <div class="stats">
-    <div><b>1,200+</b><br>Sotilgan uy</div>
-    <div><b>98%</b><br>Mamnun mijoz</div>
-    <div><b>15+</b><br>Yillik tajriba</div>
-  </div>
-</div>
+<section id="contact">
+  <h2 class="section-title">Aloqa</h2>
+  <p style="text-align:center">📞 +998 90 000 00 00</p>
+</section>
 
-<div class="section" id="contact">
-  <h2>Bog‘lanish</h2>
-  <div class="grid">
-    <div class="card">Telefon: +998 xx xxx xx xx</div>
-    <div class="card">Email: info@prime.uz</div>
-    <div class="card">Manzil: Toshkent</div>
-  </div>
-</div>
-
-<footer>© 2026 PrimeEstate</footer>
-
-<script>
-var homes=[
- {n:"Luxury Villa",p:"$450,000",i:"https://picsum.photos/seed/home1/700/500"},
- {n:"City Apartment",p:"$120,000",i:"https://picsum.photos/seed/home2/700/500"},
- {n:"Family House",p:"$210,000",i:"https://picsum.photos/seed/home3/700/500"},
- {n:"Modern Loft",p:"$180,000",i:"https://picsum.photos/seed/home4/700/500"},
- {n:"Country Home",p:"$95,000",i:"https://picsum.photos/seed/home5/700/500"},
- {n:"Penthouse",p:"$520,000",i:"https://picsum.photos/seed/home6/700/500"}
-];
-
-var box=document.getElementById("homes");
-for(var i=0;i<homes.length;i++){
-  var c=document.createElement("div");
-  c.className="card";
-  c.innerHTML=
-   '<img src="'+homes[i].i+'" onerror="this.src=\'https://picsum.photos/700/500\'">'+
-   '<h3>'+homes[i].n+'</h3>'+
-   '<div class="price">'+homes[i].p+'</div>';
-  box.appendChild(c);
-}
-function reveal(){
-  var a=document.getElementsByClassName("card");
-  for(var i=0;i<a.length;i++){
-    var r=a[i].getBoundingClientRect();
-    if(r.top<window.innerHeight-60){
-      a[i].className="card show";
-    }
-  }
-}
-window.onscroll=reveal;
-reveal();
-</script>
-
+<footer>© 2026 GRAND HOTEL — Luxury Experience</footer>
 </body>
 </html>
